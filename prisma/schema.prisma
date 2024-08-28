@@ -20,10 +20,22 @@ model User {
   password  String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  Post      Post[]
 }
 
 model Image {
   id            Int    @id @default(autoincrement())
   url           String
   thumbnail_url String
+}
+
+model Post {
+  id       Int      @id @default(autoincrement())
+  title    String
+  content  String
+  user     User     @relation(fields: [userId], references: [id])
+  date     DateTime @default(now())
+  category String
+  imageId  Int?
+  userId   Int
 }

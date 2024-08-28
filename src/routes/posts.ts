@@ -4,8 +4,8 @@ import schemaErrorHandler from 'src/middleware/schema-error';
 
 import { validatePagedRequest } from 'src/validation-schemas/get_request';
 import auth from 'src/middleware/auth';
-import { createRole, deleteRole, getPagedRoles, getRoleById, updateRole } from 'src/controllers/roles';
-import { validateRoleCreate, validateRoleUpdate } from 'src/validation-schemas/roles';
+import { createPost, deletePost, getPostById, getPostsPaged } from 'src/controllers/posts';
+import { createPostValidation, updatePostValidation } from 'src/validation-schemas/post';
 
 const router = express.Router();
 
@@ -15,26 +15,26 @@ router.post(
   auth,
   validatePagedRequest,
   schemaErrorHandler,
-  getPagedRoles
+  getPostsPaged
 );
 
-router.get('/:id', auth, getRoleById);
+router.get('/:id', auth, getPostById);
 
 router.post(
   '/',
   auth,
-  validateRoleCreate,
+  createPostValidation,
   schemaErrorHandler,
-  createRole
+  createPost
 );
 
 router.put(
   '/',
   auth,
-  validateRoleUpdate,
+  updatePostValidation,
   schemaErrorHandler,
-  updateRole
+  updatePostValidation
 );
 
-router.delete('/:id', auth, deleteRole);
+router.delete('/:id', auth, deletePost);
 export default router;

@@ -6,8 +6,8 @@ import notFound from './src/middleware/not-found';
 import cors from 'cors';
 
 import auth from './src/routes/auth';
-import user from './src/routes/user';
 import images from './src/routes/images';
+import posts from './src/routes/posts';
 
 const port = process.env['PORT'] || 5000;
 
@@ -30,8 +30,8 @@ app.use(logger);
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api/auth', auth);
-app.use('/api/user', user);
 app.use('/api/images', images);
+app.use('/api/posts', posts);
 
 
 app.use(notFound);
