@@ -4,7 +4,7 @@ import schemaErrorHandler from 'src/middleware/schema-error';
 
 import { validatePagedRequest } from 'src/validation-schemas/get_request';
 import auth from 'src/middleware/auth';
-import { createPost, deletePost, getPostById, getPostsPaged } from 'src/controllers/posts';
+import { createPost, deletePost, getPostById, getPostsPaged, updatePost } from 'src/controllers/posts';
 import { createPostValidation, updatePostValidation } from 'src/validation-schemas/post';
 
 const router = express.Router();
@@ -33,7 +33,7 @@ router.put(
   auth,
   updatePostValidation,
   schemaErrorHandler,
-  updatePostValidation
+  updatePost
 );
 
 router.delete('/:id', auth, deletePost);
